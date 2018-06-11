@@ -38,26 +38,50 @@ NerdyTwitch is a library to interact with the platform Twitch. The library give 
 - [ ] check if connected
 
 ## Getting Started
+### IRC
+```java
+NerdyTwitch nerdyTwitch = new NerdyTwitch(botName, botPassword);
+nerdyTwitch.connect();
+
+while (true) {
+  System.out.println(nerdyTwitch.readMessage());
+}
+```
 
 ## Usage
 ### Function / Methode
-#### Class: NerdyTwitch  
+#### Class: NerdyTwitch
 
 | Name | Return | Description | Throws |
 |------|--------|-------------|--------|
-|NerdyTwitch||||
-|setConnectionInformation|void|||
-|connect|int|||
-|disconnect|int|||
-|restart|int|||
-|joinChannel|int|||
-|leaveChannel|int|||
-|readMessage|String|||
-|sendServerMessage|int|||
-|sendChannelMessage|int|||
-|sendWisperMessage|int|||
+|NerdyTwitch||constructor||
+|setConnectionInformation|void|Disconnects from Twitch IRC and set connection information new.||
+|connect|int|Starts the connection with the Twitch IRC.||
+|disconnect|int|Terminates the connection with the Twitch IRC.||
+|restart|int|Restarts the connection with the Twitch IRC.||
+|joinChannel|int|Join the specifying Twitch IRC channel.||
+|leaveChannel|int|Leaves the specifying Twitch IRC channel.||
+|readMessage|String|Reads a message from the Twitch IRC.||
+|sendServerMessage|int|Sends a message to the Twitch IRC.||
+|sendChannelMessage|int|Sends a message to the specified channel.||
+|sendWisperMessage|int|Sends a wisper message to a user.||
 
 ### Examples
+#### Connect to IRC without SSL
+```java
+NerdyTwitch nerdyTwitch = new NerdyTwitch(botName, botPassword, false);
+nerdyTwitch.connect();
+```
+#### Set connection information new for the IRC connection and connect
+```java
+nerdyTwitch.setConnectionInformation(botName, botPassword, true, true)
+nerdyTwitch.connect();
+```
+The first true defines the SSL connection and the second true allows to get more information from a message (Twitch adds information to a message).
+#### Send a message to a channel
+```java
+nerdyTwitch.sendChannelMessage("Channel XY", "Hallo World!");
+```
 
 ## List of Error/Warning Codes
 | Name | Description |
