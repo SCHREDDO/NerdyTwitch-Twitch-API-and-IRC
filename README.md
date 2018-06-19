@@ -26,6 +26,20 @@ NerdyTwitch is a library to interact with the platform Twitch. The library give 
 
 ### Upcoming Features
 #### Twitch API
+- [ ] get bits leaderboard
+- [ ] create clip
+- [ ] get clips
+- [ ] create entitlement grants upload URL
+- [ ] get extension analytics
+- [ ] get games
+- [ ] get game analytics
+- [ ] get top games
+- [ ] get streams
+- [ ] get streams metadata
+- [ ] get users
+- [ ] get users follows
+- [ ] update user
+- [ ] get videos
 #### Twitch IRC
 - [x] handling IRC connection
 - [x] join channel
@@ -36,6 +50,12 @@ NerdyTwitch is a library to interact with the platform Twitch. The library give 
 - [x] send message
 - [x] send whisper message
 - [ ] check if connected
+- [ ] use Twitch commands
+- [ ] messages as a object
+- [ ] channel as a object
+- [ ] user as a object
+- [ ] use the connection via channel/user objects
+- [ ] events (received message, user joined, ...)
 
 ## Getting Started
 ### IRC
