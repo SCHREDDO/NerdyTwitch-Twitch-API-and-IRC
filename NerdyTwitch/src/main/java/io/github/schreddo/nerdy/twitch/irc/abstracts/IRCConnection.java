@@ -1,4 +1,4 @@
-// Copyright (C) 2018 SCHREDDO[Sebastian]
+// Copyright (C) 2018 Sebastian Lühnen
 //
 //
 // This file is part of NerdyTwitch.
@@ -17,7 +17,7 @@
 // along with NerdyTwitch. If not, see <http://www.gnu.org/licenses/>.
 //
 //
-// Created By: SCHREDDO[Sebastian]
+// Created By: Sebastian Lühnen
 // Created On: 21.05.2018
 // Last Edited On: 31.05.2018
 // Language: Java
