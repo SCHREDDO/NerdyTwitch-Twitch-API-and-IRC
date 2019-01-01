@@ -77,6 +77,7 @@ nerdyTwitch.setClientID(clientID);
 String json = nerdyTwitch.json().getTopGames();
 System.out.println(json);
 ```
+To use API calls the application need to be registrat(https://dev.twitch.tv/docs/authentication/#registration).
 ### IRC
 ```java
 NerdyTwitch nerdyTwitch = new NerdyTwitch(username, userPassword);
