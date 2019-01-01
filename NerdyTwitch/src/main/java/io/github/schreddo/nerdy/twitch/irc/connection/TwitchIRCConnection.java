@@ -1,4 +1,4 @@
-// Copyright (C) 2018 Sebastian Lühnen
+// Copyright (C) 2018-2019 Sebastian Lühnen
 //
 //
 // This file is part of NerdyTwitch.

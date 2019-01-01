@@ -1,4 +1,4 @@
-// Copyright (C) 2018 Sebastian Lühnen
+// Copyright (C) 2018-2019 Sebastian Lühnen
 //
 //
 // This file is part of NerdyTwitch.
@@ -19,11 +19,12 @@
 //
 // Created By: Sebastian Lühnen
 // Created On: 21.05.2018
-// Last Edited On: 10.06.2018
+// Last Edited On: 01.01.2019
 // Language: Java
 //
 package io.github.schreddo.nerdy.twitch;
 
+import io.github.schreddo.nerdy.twitch.api.TwitchAPIClient;
 import io.github.schreddo.nerdy.twitch.irc.TwitchIRCClient;
 import io.github.schreddo.nerdy.twitch.irc.connection.TwitchIRCConnection;
 
@@ -31,6 +32,8 @@ public class NerdyTwitch {
 
 	private TwitchIRCConnection connection;
 	private boolean extendedInformation;
+	
+	private boolean useAPIJson;
 	
 	public TwitchIRCConnection getConnection() {
 		return connection;
@@ -43,6 +46,13 @@ public class NerdyTwitch {
 	}
 	public void setExtendedInformation(boolean extendedInformation) {
 		this.extendedInformation = extendedInformation;
+	}
+	
+	public boolean getUseAPIJson() {
+		return useAPIJson;
+	}
+	public void setUseAPIJson(boolean useAPIJson) {
+		this.useAPIJson = useAPIJson;
 	}
 	
 	public NerdyTwitch() {
@@ -133,5 +143,130 @@ public class NerdyTwitch {
 	
 	public int sendWisperMessage(String username, String message) {
 		return TwitchIRCClient.sendWisperMessage(username, message, getConnection());
+	}
+	
+	public void setClientID(String clientID) {
+		TwitchAPIClient.setClientID(clientID);
+	}
+	
+	public boolean getAuthorization() {
+		return false;
+	}
+	
+	public NerdyTwitch json() {
+		setUseAPIJson(true);
+		return this;
+	}
+	
+	public Object getClips(String broadcasterID, String gameID, String id) {
+		return getClips(broadcasterID, gameID, id, null, null, null, null, null);
+	}
+	
+	public Object getClips(String broadcasterID, String gameID, String id, String after, String before, String endedAt, Integer first, String startedAt) {
+		Object responseData = null;
+		responseData = TwitchAPIClient.getClips(broadcasterID, gameID, id, after, before, endedAt, first, startedAt).getResponse();
+		
+		if (!getUseAPIJson()) {
+			responseData = jsonToObject(responseData.toString());
+			setUseAPIJson(false);
+		}
+		
+		return responseData;
+	}
+	
+	public Object getTopGames() {
+		return getTopGames(null, null, null);
+	}
+	
+	public Object getTopGames(String afte, String before, Integer first) {
+		Object responseData = null;
+		responseData = TwitchAPIClient.getTopGames(afte, before, first).getResponse();
+		
+		if (!getUseAPIJson()) {
+			responseData = jsonToObject(responseData.toString());
+			setUseAPIJson(false);
+		}
+		
+		return responseData;
+	}
+		
+	public Object getGames(String id, String name) {
+		Object responseData = null;
+		responseData = TwitchAPIClient.getGames(id, name).getResponse();
+		
+		if (!getUseAPIJson()) {
+			responseData = jsonToObject(responseData.toString());
+			setUseAPIJson(false);
+		}
+		
+		return responseData;
+	}
+	
+	public Object getStreams() {
+		return getStreams(null, null, null, null, null, null, null, null);
+	}
+	
+	public Object getStreams(String after, String before, String communityID, Integer first, String gameID, String language, String userID, String userLogin) {
+		Object responseData = null;
+		responseData = TwitchAPIClient.getStreams(after, before, communityID, first, gameID, language, userID, userLogin).getResponse();
+		
+		if (!getUseAPIJson()) {
+			responseData = jsonToObject(responseData.toString());
+			setUseAPIJson(false);
+		}
+		
+		return responseData;
+	}
+	
+	public Object getStreamsMetadata() {
+		return getStreamsMetadata(null, null, null, null, null, null, null, null);
+	}
+	
+	public Object getStreamsMetadata(String after, String before, String communityID, Integer first, String gameID, String language, String userID, String userLogin) {
+		Object responseData = null;
+		responseData = TwitchAPIClient.getStreamsMetadata(after, before, communityID, first, gameID, language, userID, userLogin).getResponse();
+		
+		if (!getUseAPIJson()) {
+			responseData = jsonToObject(responseData.toString());
+			setUseAPIJson(false);
+		}
+		
+		return responseData;
+	}
+	
+	public Object getUsersFollows(StringBuffer fromID) {
+		return getUsersFollows(null, null, fromID.toString(), null);
+	}
+	
+	public Object getUsersFollows(String toID) {
+		return getUsersFollows(null, null, null, toID);
+	}
+	
+	public Object getUsersFollows(String after, Integer first, String fromID, String toID) {
+		Object responseData = null;
+		responseData = TwitchAPIClient.getUsersFollows(after, first, fromID, toID).getResponse();
+		
+		if (!getUseAPIJson()) {
+			responseData = jsonToObject(responseData.toString());
+			setUseAPIJson(false);
+		}
+		
+		return responseData;
+	}
+	
+	public Object getVideos(String id, String userID, String gameID, String after, String before, Integer first, String language, String period, String sort, String type) {
+		Object responseData = null;
+		responseData = TwitchAPIClient.getVideos(id, userID, gameID, after, before, first, language, period, sort, type).getResponse();
+		
+		if (!getUseAPIJson()) {
+			responseData = jsonToObject(responseData.toString());
+			setUseAPIJson(false);
+		}
+		
+		return responseData;
+	}
+	
+	private Object jsonToObject(String json) {
+		return null;
 	}
 }
